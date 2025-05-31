@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Транспорт ♡ RMRP</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #131320;
+    color: white;
+    padding: 20px;
+    margin: 0;
+  }
+
+.table-title {
+    font-size: 28px;
+    margin-bottom: 20px; /* Отступ между названием и картинкой */
+    color: #ffffff;
+    cursor: pointer;
+    text-align: center;
+    }
+
+  .container {
+    max-width: 100vw; /* ширина по всей странице */
+    margin: 0 auto;
+    padding: 0 10px; /* небольшой отступ слева и справа */
+  }
+  .section {
+    border: 2px solid #008979;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    overflow: hidden;
+  }
+  .section-header {
+    background-color: #008979;
+    padding: 15px 20px;
+    font-size: 24px;
+    font-weight: 700;
+    text-align: center;
+    cursor: pointer;
+    user-select: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .section-header:hover {
+    background-color: #01585b;
+  }
+  .toggle-icon {
+    transition: transform 0.3s ease;
+  }
+  .toggle-icon.collapsed {
+    transform: rotate(-90deg);
+  }
+  .items {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr); /* 6 колонок равной ширины */
+    gap: 15px;
+    padding: 15px 20px;
+    background-color: #131320;
+  }
+  .item {
+    background: #131320;
+    border-radius: 8px;
+    text-align: center;
+    cursor: default;
+    box-shadow: 0 0 20px #0098cf;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .item img {
+    width: 100%; /* фото занимает всю ширину ячейки */
+    height: auto;
+    max-height: 140px; /* увеличенный размер фото */
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+    object-fit: cover;
+  }
+  .item img:hover {
+    filter: brightness(0.9);
+  }
+  .item-text {
+    font-family: 'Arial', sans-serif;
+    padding: 6px 8px 5px; /* уменьшено сверху и сбоку, увеличено снизу */
+    font-size: 18px;
+    color: #ffffff;
+    flex-shrink: 0;
+    line-height: 1.2;
+  }
+
+.item.highlight {
+  box-shadow: 0 0 15px 3px #00de9b; /* яркая зелёная подсветка */
+  transition: box-shadow 0.3s ease;
+}
+
+  /* Модальное окно для увеличения фото */
+  .modal {
+    display: none; /* скрыто по умолчанию */
+    position: fixed;
+    z-index: 1000;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background-color: #000000a9;
+    justify-content: center;
+    align-items: center;
+  }
+  .modal.open {
+    display: flex;
+  }
+  .modal img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 10px;
+    box-shadow: 0 0 20px #3fa9f5;
+  }
+  .modal-close {
+    position: fixed;
+    top: 20px;
+    right: 30px;
+    font-size: 30px;
+    color: white;
+    cursor: pointer;
+    user-select: none;
+  }
+  @media (max-width: 1200px) {
+    .items {
+      grid-template-columns: repeat(4, 1fr); /* на средних экранах 4 в ряд */
+    }
+  }
+  @media (max-width: 800px) {
+    .items {
+      grid-template-columns: repeat(2, 1fr); /* на мобильных 2 в ряд */
+    }
+  }
+</style>
+</head>
+<body>
+<!-- Оборачиваем ссылку в блок с центровкой -->
+  <div style="text-align: right; margin-bottom: 20px;">
+    <a href="https://discord.gg/ETQZwJUv" target="_blank" rel="noopener noreferrer">
+      Вопросы по поводу таблицы пиши сюда
+      <img src="discord.jpg" alt="Discord" width="75" height="70"> 
+    </a>
+  </div>
+<style>
+  a {
+    display: inline-flex;
+    align-items: center;
+    text-align: center;
+    font-size: 22px;
+    gap: 8px; /* расстояние между изображением и текстом */
+    text-decoration: none; /* убрать подчеркивание, если нужно */
+    color: #ffffff; /* цвет текста будет как в остальном документе */
+  }
+</style>
+    <div class="container">
+        <div class="table-header">
+            <h2 class="table-title">Таблица транспорта с изображениями ♡ RMRP</h2>
+        </div>
+<div class="container">
+
+  <div class="section" id="section-automobiles">
+    <div class="section-header" onclick="toggleSection('section-automobiles')">
+      Автомобили
+      <span class="toggle-icon" id="icon-section-automobiles">&#9650;</span>
+    </div>
+    <div class="items">
+<div class="item"><img src="1.jpg" onclick="openModal(this)" /><div class="item-text">	Бумер "Ешка" 34	</div></div>
+<div class="item"><img src="2.jpg" onclick="openModal(this)" /><div class="item-text">	Бумер "Икс Шестой"	</div></div>
+<div class="item"><img src="3.jpg" onclick="openModal(this)" /><div class="item-text">	Бумер I8	</div></div>
+<div class="item"><img src="4.jpg" onclick="openModal(this)" /><div class="item-text">	Джимни "Пж-20"	</div></div>
+<div class="item"><img src="5.jpg" onclick="openModal(this)" /><div class="item-text">	Фолькс Кафер	</div></div>
+<div class="item"><img src="6.jpg" onclick="openModal(this)" /><div class="item-text">	Бумер X-5 Тип 53	</div></div>
+<div class="item"><img src="7.jpg" onclick="openModal(this)" /><div class="item-text">	Бумер Z4	</div></div>
+<div class="item"><img src="8.jpg" onclick="openModal(this)" /><div class="item-text">	Бумер М3 "Классика"	</div></div>
+<div class="item"><img src="9.jpg" onclick="openModal(this)" /><div class="item-text">	Бумер М3 2006	</div></div>
+<div class="item"><img src="10.jpg" onclick="openModal(this)" /><div class="item-text">	Бумер М4-2022	</div></div>
+<div class="item"><img src="11.jpg" onclick="openModal(this)" /><div class="item-text">	Бумер М8	</div></div>
+<div class="item"><img src="12.jpg" onclick="openModal(this)" /><div class="item-text">	ЗАЗИК "965"	</div></div>
+<div class="item"><img src="13.jpg" onclick="openModal(this)" /><div class="item-text">	Бумер М635	</div></div>
+<div class="item"><img src="14.jpg" onclick="openModal(this)" /><div class="item-text">	Гелик Мини	</div></div>
+<div class="item"><img src="15.jpg" onclick="openModal(this)" /><div class="item-text">	Гладиатор	</div></div>
+<div class="item"><img src="16.jpg" onclick="openModal(this)" /><div class="item-text">	Жига 2105	</div></div>
+<div class="item"><img src="17.jpg" onclick="openModal(this)" /><div class="item-text">	Крузак 200	</div></div>
+<div class="item"><img src="18.jpg" onclick="openModal(this)" /><div class="item-text">	Крузак FJ	</div></div>
+<div class="item"><img src="19.jpg" onclick="openModal(this)" /><div class="item-text">	Купер	</div></div>
+<div class="item"><img src="20.jpg" onclick="openModal(this)" /><div class="item-text">	Лекс IS300	</div></div>
+<div class="item"><img src="21.jpg" onclick="openModal(this)" /><div class="item-text">	Лекс LX-1999	</div></div>
+<div class="item"><img src="22.jpg" onclick="openModal(this)" /><div class="item-text">	Лекс LX-2018	</div></div>
+<div class="item"><img src="23.jpg" onclick="openModal(this)" /><div class="item-text">	Лекс RCF	</div></div>
+<div class="item"><img src="24.jpg" onclick="openModal(this)" /><div class="item-text">	Самурай МК2	</div></div>
+<div class="item"><img src="25.jpg" onclick="openModal(this)" /><div class="item-text">	Цивик ЕК9	</div></div>
+<div class="item"><img src="26.jpg" onclick="openModal(this)" /><div class="item-text">	Электрогелик	</div></div>
+<div class="item"><img src="27.jpg" onclick="openModal(this)" /><div class="item-text">	206 "GTI"	</div></div>
+<div class="item"><img src="28.jpg" onclick="openModal(this)" /><div class="item-text">	350-Z	</div></div>
+<div class="item"><img src="29.jpg" onclick="openModal(this)" /><div class="item-text">	911-й Турбо	</div></div>
+<div class="item"><img src="30.jpg" onclick="openModal(this)" /><div class="item-text">	969М "Волынь"	</div></div>
+<div class="item"><img src="31.jpg" onclick="openModal(this)" /><div class="item-text">	Н1	</div></div>
+<div class="item"><img src="32.jpg" onclick="openModal(this)" /><div class="item-text">	V-50 "Камрюха"	</div></div>
+<div class="item"><img src="33.jpg" onclick="openModal(this)" /><div class="item-text">	XV70 "Камрюха"	</div></div>
+<div class="item"><img src="34.jpg" onclick="openModal(this)" /><div class="item-text">	Авента - Ультимейт	</div></div>
+<div class="item"><img src="35.jpg" onclick="openModal(this)" /><div class="item-text">	Альфа - Кабрио	</div></div>
+<div class="item"><img src="36.jpg" onclick="openModal(this)" /><div class="item-text">	Бентаига	</div></div>
+<div class="item"><img src="37.jpg" onclick="openModal(this)" /><div class="item-text">	Бумер Х-7	</div></div>
+<div class="item"><img src="38.jpg" onclick="openModal(this)" /><div class="item-text">	Буханка	</div></div>
+<div class="item"><img src="39.jpg" onclick="openModal(this)" /><div class="item-text">	Веста	</div></div>
+<div class="item"><img src="40.jpg" onclick="openModal(this)" /><div class="item-text">	Восьмерка "Ретро"	</div></div>
+<div class="item"><img src="41.jpg" onclick="openModal(this)" /><div class="item-text">	ГТР	</div></div>
+<div class="item"><img src="42.jpg" onclick="openModal(this)" /><div class="item-text">	Гелик 2014	</div></div>
+<div class="item"><img src="43.jpg" onclick="openModal(this)" /><div class="item-text">	Гольф	</div></div>
+<div class="item"><img src="44.jpg" onclick="openModal(this)" /><div class="item-text">	130-й ХотРод	</div></div>
+<div class="item"><img src="45.jpg" onclick="openModal(this)" /><div class="item-text">	Камаро	</div></div>
+<div class="item"><img src="46.jpg" onclick="openModal(this)" /><div class="item-text">	Камаро ретро	</div></div>
+<div class="item"><img src="47.jpg" onclick="openModal(this)" /><div class="item-text">	Каптива	</div></div>
+<div class="item"><img src="48.jpg" onclick="openModal(this)" /><div class="item-text">	Катафалк	</div></div>
+<div class="item"><img src="49.jpg" onclick="openModal(this)" /><div class="item-text">	Континенталь	</div></div>
+<div class="item"><img src="50.jpg" onclick="openModal(this)" /><div class="item-text">	Корвет-23	</div></div>
+<div class="item"><img src="51.jpg" onclick="openModal(this)" /><div class="item-text">	Корвет 1956	</div></div>
+<div class="item"><img src="52.jpg" onclick="openModal(this)" /><div class="item-text">	Куллинан	</div></div>
+<div class="item"><img src="53.jpg" onclick="openModal(this)" /><div class="item-text">	Кунташ 1988	</div></div>
+<div class="item"><img src="54.jpg" onclick="openModal(this)" /><div class="item-text">	Риван "Р1Т"	</div></div>
+<div class="item"><img src="55.jpg" onclick="openModal(this)" /><div class="item-text">	Нивасик "6х6"	</div></div>
+<div class="item"><img src="56.jpg" onclick="openModal(this)" /><div class="item-text">	Ламба Ярама	</div></div>
+<div class="item"><img src="57.jpg" onclick="openModal(this)" /><div class="item-text">	Лачети	</div></div>
+<div class="item"><img src="58.jpg" onclick="openModal(this)" /><div class="item-text">	МБ "Акула" 63s	</div></div>
+<div class="item"><img src="59.jpg" onclick="openModal(this)" /><div class="item-text">	МБ "Гелик - 500"	</div></div>
+<div class="item"><img src="60.jpg" onclick="openModal(this)" /><div class="item-text">	МБ "Гелик - Вездеход" 500-й	</div></div>
+<div class="item"><img src="61.jpg" onclick="openModal(this)" /><div class="item-text">	МБ "Кабан"	</div></div>
+<div class="item"><img src="62.jpg" onclick="openModal(this)" /><div class="item-text">	МБ "Шестисотый" ГЛС	</div></div>
+<div class="item"><img src="63.jpg" onclick="openModal(this)" /><div class="item-text">	МБ 45-А	</div></div>
+<div class="item"><img src="64.jpg" onclick="openModal(this)" /><div class="item-text">	МБ 63-й "Гелик"	</div></div>
+<div class="item"><img src="65.jpg" onclick="openModal(this)" /><div class="item-text">	МБ 63 ЦЛС	</div></div>
+<div class="item"><img src="66.jpg" onclick="openModal(this)" /><div class="item-text">	МБ 600 СЛ	</div></div>
+<div class="item"><img src="67.jpg" onclick="openModal(this)" /><div class="item-text">	Ферра "512 ТР"	</div></div>
+<div class="item"><img src="68.jpg" onclick="openModal(this)" /><div class="item-text">	МБ СЛР Мак	</div></div>
+<div class="item"><img src="69.jpg" onclick="openModal(this)" /><div class="item-text">	МБ "Икс-Класс"	</div></div>
+<div class="item"><img src="70.jpg" onclick="openModal(this)" /><div class="item-text">	МБ ЦЛА 45	</div></div>
+<div class="item"><img src="71.jpg" onclick="openModal(this)" /><div class="item-text">	Мак 600-й	</div></div>
+<div class="item"><img src="72.jpg" onclick="openModal(this)" /><div class="item-text">	Мак 765-й ЛТ	</div></div>
+<div class="item"><img src="73.jpg" onclick="openModal(this)" /><div class="item-text">	Матиз	</div></div>
+<div class="item"><img src="74.jpg" onclick="openModal(this)" /><div class="item-text">	Мустанг 2016	</div></div>
+<div class="item"><img src="75.jpg" onclick="openModal(this)" /><div class="item-text">	Мустанг ретро	</div></div>
+<div class="item"><img src="76.jpg" onclick="openModal(this)" /><div class="item-text">	Ока	</div></div>
+<div class="item"><img src="77.jpg" onclick="openModal(this)" /><div class="item-text">	Ситруэн "ВИТ 23"	</div></div>
+<div class="item"><img src="78.jpg" onclick="openModal(this)" /><div class="item-text">	Патриот	</div></div>
+<div class="item"><img src="79.jpg" onclick="openModal(this)" /><div class="item-text">	Приора	</div></div>
+<div class="item"><img src="80.jpg" onclick="openModal(this)" /><div class="item-text">	Пульман	</div></div>
+<div class="item"><img src="81.jpg" onclick="openModal(this)" /><div class="item-text">	Р8 "Властелин Колец"	</div></div>
+<div class="item"><img src="82.jpg" onclick="openModal(this)" /><div class="item-text">	РР Сильвер-К	</div></div>
+<div class="item"><img src="83.jpg" onclick="openModal(this)" /><div class="item-text">	РС6 Авант "Властелин Колец"	</div></div>
+<div class="item"><img src="84.jpg" onclick="openModal(this)" /><div class="item-text">	РС7 "Властелин Колец"	</div></div>
+<div class="item"><img src="85.jpg" onclick="openModal(this)" /><div class="item-text">	Рабочий Грузовик	</div></div>
+<div class="item"><img src="86.jpg" onclick="openModal(this)" /><div class="item-text">	Раптор	</div></div>
+<div class="item"><img src="87.jpg" onclick="openModal(this)" /><div class="item-text">	Москвович "423"	</div></div>
+<div class="item"><img src="88.jpg" onclick="openModal(this)" /><div class="item-text">	Ровер-СТ	</div></div>
+<div class="item"><img src="89.jpg" onclick="openModal(this)" /><div class="item-text">	С8 "Властелин Колец"	</div></div>
+<div class="item"><img src="90.jpg" onclick="openModal(this)" /><div class="item-text">	Пятнашка	</div></div>
+<div class="item"><img src="91.jpg" onclick="openModal(this)" /><div class="item-text">	Сенат	</div></div>
+<div class="item"><img src="92.jpg" onclick="openModal(this)" /><div class="item-text">	Сиатор Родст	</div></div>
+<div class="item"><img src="93.jpg" onclick="openModal(this)" /><div class="item-text">	Спринтер	</div></div>
+<div class="item"><img src="94.jpg" onclick="openModal(this)" /><div class="item-text">	Стингер	</div></div>
+<div class="item"><img src="95.jpg" onclick="openModal(this)" /><div class="item-text">	Супра "Классика"	</div></div>
+<div class="item"><img src="96.jpg" onclick="openModal(this)" /><div class="item-text">	Супра "Спорт"	</div></div>
+<div class="item"><img src="97.jpg" onclick="openModal(this)" /><div class="item-text">	Т "Модел С"	</div></div>
+<div class="item"><img src="98.jpg" onclick="openModal(this)" /><div class="item-text">	Тайкан	</div></div>
+<div class="item"><img src="99.jpg" onclick="openModal(this)" /><div class="item-text">	Урус	</div></div>
+<div class="item"><img src="100.jpg" onclick="openModal(this)" /><div class="item-text">	Ф 488	</div></div>
+<div class="item"><img src="101.jpg" onclick="openModal(this)" /><div class="item-text">	Ф Пуросанга	</div></div>
+<div class="item"><img src="102.jpg" onclick="openModal(this)" /><div class="item-text">	Фантом	</div></div>
+<div class="item"><img src="103.jpg" onclick="openModal(this)" /><div class="item-text">	МБ "Цэшка" 63-Купе	</div></div>
+<div class="item"><img src="104.jpg" onclick="openModal(this)" /><div class="item-text">	Фолькс Кармэн	</div></div>
+<div class="item"><img src="105.jpg" onclick="openModal(this)" /><div class="item-text">	Хамер ЕВ Пикап	</div></div>
+<div class="item"><img src="106.jpg" onclick="openModal(this)" /><div class="item-text">	Ламба "Хуракан"	</div></div>
+<div class="item"><img src="107.jpg" onclick="openModal(this)" /><div class="item-text">	Центарио	</div></div>
+<div class="item"><img src="108.jpg" onclick="openModal(this)" /><div class="item-text">	Чайка	</div></div>
+<div class="item"><img src="109.jpg" onclick="openModal(this)" /><div class="item-text">	Челленджер "Рейд"	</div></div>
+<div class="item"><img src="110.jpg" onclick="openModal(this)" /><div class="item-text">	Челленджер	</div></div>
+<div class="item"><img src="111.jpg" onclick="openModal(this)" /><div class="item-text">	Б Чироки	</div></div>
+<div class="item"><img src="112.jpg" onclick="openModal(this)" /><div class="item-text">	Эво-9	</div></div>
+<div class="item"><img src="113.jpg" onclick="openModal(this)" /><div class="item-text">	Эво-10	</div></div>
+<div class="item"><img src="114.jpg" onclick="openModal(this)" /><div class="item-text">	Эскалейд 2022	</div></div>
+<div class="item"><img src="115.jpg" onclick="openModal(this)" /><div class="item-text">	Бумер "Ешка" 38	</div></div>
+<div class="item"><img src="116.jpg" onclick="openModal(this)" /><div class="item-text">	Крузак 300	</div></div>
+<div class="item"><img src="117.jpg" onclick="openModal(this)" /><div class="item-text">	Кабрио "Властелин Колец" Ретро	</div></div>
+<div class="item"><img src="118.jpg" onclick="openModal(this)" /><div class="item-text">	МБ Г900 "Ракета"	</div></div>
+<div class="item"><img src="119.jpg" onclick="openModal(this)" /><div class="item-text">	Гемера	</div></div>
+<div class="item"><img src="120.jpg" onclick="openModal(this)" /><div class="item-text">	МБ В124	</div></div>
+<div class="item"><img src="121.jpg" onclick="openModal(this)" /><div class="item-text">	РР Райт	</div></div>
+<div class="item"><img src="122.jpg" onclick="openModal(this)" /><div class="item-text">	СЦ-20	</div></div>
+<div class="item"><img src="123.jpg" onclick="openModal(this)" /><div class="item-text">	Спортедж	</div></div>
+<div class="item"><img src="124.jpg" onclick="openModal(this)" /><div class="item-text">	Макларен "Спидтейл"	</div></div>
+<div class="item"><img src="125.jpg" onclick="openModal(this)" /><div class="item-text">	Мерин "Майб Г900"	</div></div>
+<div class="item"><img src="126.jpg" onclick="openModal(this)" /><div class="item-text">	Тундра "ПРО 23"	</div></div>
+<div class="item"><img src="127.jpg" onclick="openModal(this)" /><div class="item-text">	Бумер "Е36 Ракета"	</div></div>
+<div class="item"><img src="128.jpg" onclick="openModal(this)" /><div class="item-text">	Ровер "Защитник 1997"	</div></div>
+<div class="item"><img src="129.jpg" onclick="openModal(this)" /><div class="item-text">	Бумер "2002 Турбо"	</div></div>
+<div class="item"><img src="130.jpg" onclick="openModal(this)" /><div class="item-text">	Ламба "Урус 6х6"	</div></div>
+<div class="item"><img src="131.jpg" onclick="openModal(this)" /><div class="item-text">	Хуньцэ ЕХС-9	</div></div>
+<div class="item"><img src="132.jpg" onclick="openModal(this)" /><div class="item-text">	2203 "РАФИК"	</div></div>
+<div class="item"><img src="133.jpg" onclick="openModal(this)" /><div class="item-text">	Бумер 760Х	</div></div>
+<div class="item"><img src="134.jpg" onclick="openModal(this)" /><div class="item-text">	МБ 300-СЛ	</div></div>
+<div class="item"><img src="135.jpg" onclick="openModal(this)" /><div class="item-text">	РР "ЛонгТэйл"	</div></div>
+<div class="item"><img src="136.jpg" onclick="openModal(this)" /><div class="item-text">	Мерин "Стирлинг Мосс"	</div></div>
+<div class="item"><img src="137.jpg" onclick="openModal(this)" /><div class="item-text">	Мартин Бонда	</div></div>
+<div class="item"><img src="138.jpg" onclick="openModal(this)" /><div class="item-text">	Ренджик 2022	</div></div>
+<div class="item"><img src="139.jpg" onclick="openModal(this)" /><div class="item-text">	Хондыч H-С-ЭКС 1992	</div></div>
+<div class="item"><img src="140.jpg" onclick="openModal(this)" /><div class="item-text">	911-й "Дрэг-Кинг"	</div></div>
+<div class="item"><img src="141.jpg" onclick="openModal(this)" /><div class="item-text">	Субарик ВРХ 2004	</div></div>
+<div class="item"><img src="142.jpg" onclick="openModal(this)" /><div class="item-text">	Мерин АМГ "Уан"	</div></div>
+<div class="item"><img src="143.jpg" onclick="openModal(this)" /><div class="item-text">	Ламба "Ланцадор"	</div></div>
+<div class="item"><img src="144.jpg" onclick="openModal(this)" /><div class="item-text">	Ламба "Диабло 1995"	</div></div>
+<div class="item"><img src="145.jpg" onclick="openModal(this)" /><div class="item-text">	П Тарга "911"	</div></div>
+<div class="item"><img src="146.jpg" onclick="openModal(this)" /><div class="item-text">	Нис "400z"	</div></div>
+<div class="item"><img src="147.jpg" onclick="openModal(this)" /><div class="item-text">	Шевик "Импала 1967"	</div></div>
+<div class="item"><img src="148.jpg" onclick="openModal(this)" /><div class="item-text">	Купер "Кабио 2020"	</div></div>
+<div class="item"><img src="149.jpg" onclick="openModal(this)" /><div class="item-text">	ХиПи 2024	</div></div>
+<div class="item"><img src="150.jpg" onclick="openModal(this)" /><div class="item-text">	Киберладья "2111"	</div></div>
+<div class="item"><img src="151.jpg" onclick="openModal(this)" /><div class="item-text">	Парадный Кабриолет "4104"	</div></div>
+<div class="item"><img src="152.jpg" onclick="openModal(this)" /><div class="item-text">	Газик 21 Кабриолет	</div></div>
+<div class="item"><img src="153.jpg" onclick="openModal(this)" /><div class="item-text">	Бумер М5	</div></div>
+<div class="item"><img src="154.jpg" onclick="openModal(this)" /><div class="item-text">	МБ СЛ63 Родстер	</div></div>
+<div class="item"><img src="155.jpg" onclick="openModal(this)" /><div class="item-text">	МБ С-В222	</div></div>
+<div class="item"><img src="156.jpg" onclick="openModal(this)" /><div class="item-text">	МБ В223	</div></div>
+<div class="item"><img src="157.jpg" onclick="openModal(this)" /><div class="item-text">	МБ ГЛЕ	</div></div>
+<div class="item"><img src="158.jpg" onclick="openModal(this)" /><div class="item-text">	Танк "Пятисотый"	</div></div>
+<div class="item"><img src="159.jpg" onclick="openModal(this)" /><div class="item-text">	Жатва Урбан	</div></div>
+<div class="item"><img src="160.jpg" onclick="openModal(this)" /><div class="item-text">	Мерин "6x6 Mini"	</div></div>
+<div class="item"><img src="161.jpg" onclick="openModal(this)" /><div class="item-text">	Жига 2106	</div></div>
+<div class="item"><img src="162.jpg" onclick="openModal(this)" /><div class="item-text">	Шнива Трэвэл	</div></div>
+<div class="item"><img src="163.jpg" onclick="openModal(this)" /><div class="item-text">	Лекс LX-570	</div></div>
+<div class="item"><img src="164.jpg" onclick="openModal(this)" /><div class="item-text">	МБ В-Класс	</div></div>
+<div class="item"><img src="165.jpg" onclick="openModal(this)" /><div class="item-text">	Веста кросс	</div></div>
+<div class="item"><img src="166.jpg" onclick="openModal(this)" /><div class="item-text">	Лис-9	</div></div>
+<div class="item"><img src="167.jpg" onclick="openModal(this)" /><div class="item-text">	Бумер Х5М	</div></div>
+<div class="item"><img src="168.jpg" onclick="openModal(this)" /><div class="item-text">	РЭМ "Тирэкс"	</div></div>
+<div class="item"><img src="169.jpg" onclick="openModal(this)" /><div class="item-text">	Бумер М3 Туринг	</div></div>
+<div class="item"><img src="170.jpg" onclick="openModal(this)" /><div class="item-text">	Хонд s2000 Кабрио	</div></div>
+<div class="item"><img src="171.jpg" onclick="openModal(this)" /><div class="item-text">	Ягуар Тайп 1971	</div></div>
+<div class="item"><img src="172.jpg" onclick="openModal(this)" /><div class="item-text">	Хэндэ Вижн	</div></div>
+<div class="item"><img src="173.jpg" onclick="openModal(this)" /><div class="item-text">	Бент «Батур»	</div></div>
+<div class="item"><img src="174.jpg" onclick="openModal(this)" /><div class="item-text">	Мазер С20	</div></div>
+<div class="item"><img src="175.jpg" onclick="openModal(this)" /><div class="item-text">	Мартин «ДБХ707»	</div></div>
+<div class="item"><img src="176.jpg" onclick="openModal(this)" /><div class="item-text">	Бент «ФлайСпур»	</div></div>
+<div class="item"><img src="177.jpg" onclick="openModal(this)" /><div class="item-text">	Бумер Е64 Кабрио	</div></div>
+<div class="item"><img src="178.jpg" onclick="openModal(this)" /><div class="item-text">	МБ W123	</div></div>
+<div class="item"><img src="179.jpg" onclick="openModal(this)" /><div class="item-text">	Хамер EV	</div></div>
+<div class="item"><img src="180.jpg" onclick="openModal(this)" /><div class="item-text">	Вуйтюр	</div></div>
+<div class="item"><img src="181.jpg" onclick="openModal(this)" /><div class="item-text">	Верон	</div></div>
+<div class="item"><img src="182.jpg" onclick="openModal(this)" /><div class="item-text">	Зик 009	</div></div>
+<div class="item"><img src="183.jpg" onclick="openModal(this)" /><div class="item-text">	Москвович 3	</div></div>
+<div class="item"><img src="184.jpg" onclick="openModal(this)" /><div class="item-text">	911-й ГТР	</div></div>
+<div class="item"><img src="185.jpg" onclick="openModal(this)" /><div class="item-text">	Лекс 500	</div></div>
+<div class="item"><img src="186.jpg" onclick="openModal(this)" /><div class="item-text">	МБ Г900 6х6 "Ракета"	</div></div>
+<div class="item"><img src="187.jpg" onclick="openModal(this)" /><div class="item-text">	Новогодняя Шестерка	</div></div>
+<div class="item"><img src="188.jpg" onclick="openModal(this)" /><div class="item-text">	Ламба "Хуракан-Стератто"	</div></div>
+<div class="item"><img src="189.jpg" onclick="openModal(this)" /><div class="item-text">	Ферра Цилиндри	</div></div>
+<div class="item"><img src="190.jpg" onclick="openModal(this)" /><div class="item-text">	Бумер М2 2023	</div></div>
+<div class="item"><img src="191.jpg" onclick="openModal(this)" /><div class="item-text">	Бронко	</div></div>
+<div class="item"><img src="192.jpg" onclick="openModal(this)" /><div class="item-text">	Чех "Эниак"	</div></div>
+<div class="item"><img src="193.jpg" onclick="openModal(this)" /><div class="item-text">	Итал «ДаВинчи»	</div></div>
+<div class="item"><img src="194.jpg" onclick="openModal(this)" /><div class="item-text">	РС Ку 8 «Мансор»	</div></div>
+<div class="item"><img src="195.jpg" onclick="openModal(this)" /><div class="item-text">	ЯнгВонг У8	</div></div>
+<div class="item"><img src="196.jpg" onclick="openModal(this)" /><div class="item-text">	РС 3 «Перфоманс»	</div></div>
+<div class="item"><img src="197.jpg" onclick="openModal(this)" /><div class="item-text">	Бумер ХМ	</div></div>
+<div class="item"><img src="198.jpg" onclick="openModal(this)" /><div class="item-text">	Хэндэ «Цивик Тайп-Р»	</div></div>
+<div class="item"><img src="199.jpg" onclick="openModal(this)" /><div class="item-text">	Двенашка	</div></div>
+<div class="item"><img src="200.jpg" onclick="openModal(this)" /><div class="item-text">	Двенашка «Купе»	</div></div>
+<div class="item"><img src="201.jpg" onclick="openModal(this)" /><div class="item-text">	Четырка	</div></div>
+<div class="item"><img src="202.jpg" onclick="openModal(this)" /><div class="item-text">	Паджерик 97 Эво	</div></div>
+<div class="item"><img src="203.jpg" onclick="openModal(this)" /><div class="item-text">	Б Сентодиечи	</div></div>
+<div class="item"><img src="204.jpg" onclick="openModal(this)" /><div class="item-text">	Ферра "Рома"	</div></div>
+<div class="item"><img src="205.jpg" onclick="openModal(this)" /><div class="item-text">	Кунташ Концепт	</div></div>
+<div class="item"><img src="206.jpg" onclick="openModal(this)" /><div class="item-text">	Мартин "Валоур"	</div></div>
+<div class="item"><img src="207.jpg" onclick="openModal(this)" /><div class="item-text">	Кёниг Ц850	</div></div>
+<div class="item"><img src="208.jpg" onclick="openModal(this)" /><div class="item-text">	Чарджер 2024	</div></div>
+<div class="item"><img src="209.jpg" onclick="openModal(this)" /><div class="item-text">	РР "Спектр"	</div></div>
+<div class="item"><img src="210.jpg" onclick="openModal(this)" /><div class="item-text">	Б Мистраль	</div></div>
+<div class="item"><img src="211.jpg" onclick="openModal(this)" /><div class="item-text">	Новогодняя "Капсула Смерти"	</div></div>
+<div class="item"><img src="212.jpg" onclick="openModal(this)" /><div class="item-text">	Кайен Турбо ГТ 2022	</div></div>
+<div class="item"><img src="213.jpg" onclick="openModal(this)" /><div class="item-text">	Кайен 2008	</div></div>
+<div class="item"><img src="214.jpg" onclick="openModal(this)" /><div class="item-text">	Октавия ВРС 2018	</div></div>
+<div class="item"><img src="215.jpg" onclick="openModal(this)" /><div class="item-text">	Ларгус 2024	</div></div>
+<div class="item"><img src="216.jpg" onclick="openModal(this)" /><div class="item-text">	МБ "Цэшка" Эстейт	</div></div>
+<div class="item"><img src="217.jpg" onclick="openModal(this)" /><div class="item-text">	Кайман 718 ГТ 4 РС	</div></div>
+<div class="item"><img src="218.jpg" onclick="openModal(this)" /><div class="item-text">	Бент Бакалар 2022	</div></div>
+<div class="item"><img src="219.jpg" onclick="openModal(this)" /><div class="item-text">	Мерин Ц63С АМГ "Перфоманс"	</div></div>
+<div class="item"><img src="220.jpg" onclick="openModal(this)" /><div class="item-text">	Бумер Х4 2023	</div></div>
+<div class="item"><img src="221.jpg" onclick="openModal(this)" /><div class="item-text">	Мартин Ванквиш	</div></div>
+<div class="item"><img src="222.jpg" onclick="openModal(this)" /><div class="item-text">	Ферра Дайтона СП 3	</div></div>
+<div class="item"><img src="223.jpg" onclick="openModal(this)" /><div class="item-text">	МБ АМГ ГТ Блек	</div></div>
+<div class="item"><img src="224.jpg" onclick="openModal(this)" /><div class="item-text">	Ранглер Рубик	</div></div>
+<div class="item"><img src="225.jpg" onclick="openModal(this)" /><div class="item-text">	Коллекционный Суперкар Ла-Ф	</div></div>
+<div class="item"><img src="226.jpg" onclick="openModal(this)" /><div class="item-text">	Мерин "Концепт"	</div></div>
+<div class="item"><img src="227.jpg" onclick="openModal(this)" /><div class="item-text">	Гранта Фейс Лифт 2018	</div></div>
+<div class="item"><img src="228.jpg" onclick="openModal(this)" /><div class="item-text">	Ранглер Карателя	</div></div>
+<div class="item"><img src="229.jpg" onclick="openModal(this)" /><div class="item-text">	Бумер Е60	</div></div>
+<div class="item"><img src="230.jpg" onclick="openModal(this)" /><div class="item-text">	МБ 190-й	</div></div>
+<div class="item"><img src="231.jpg" onclick="openModal(this)" /><div class="item-text">	Крузак 200 "Экспедиция"	</div></div>
+<div class="item"><img src="232.jpg" onclick="openModal(this)" /><div class="item-text">	Буханка "Экспедиция"	</div></div>
+<div class="item"><img src="233.jpg" onclick="openModal(this)" /><div class="item-text">	Хантер "Экспедиция"	</div></div>
+<div class="item"><img src="234.jpg" onclick="openModal(this)" /><div class="item-text">	РС7-Р АБТ Спортлайн	</div></div>
+<div class="item"><img src="235.jpg" onclick="openModal(this)" /><div class="item-text">	Бумер "IX"	</div></div>
+<div class="item"><img src="236.jpg" onclick="openModal(this)" /><div class="item-text">	МБ "GTBS"	</div></div>
+<div class="item"><img src="237.jpg" onclick="openModal(this)" /><div class="item-text">	Бумер М5 Г90 2024	</div></div>
+<div class="item"><img src="238.jpg" onclick="openModal(this)" /><div class="item-text">	Калина 1 Хэтч	</div></div>
+<div class="item"><img src="239.jpg" onclick="openModal(this)" /><div class="item-text">	Калина 2 Хэтч	</div></div>
+<div class="item"><img src="240.jpg" onclick="openModal(this)" /><div class="item-text">	Ниса Скайлайнер Р32	</div></div>
+<div class="item"><img src="241.jpg" onclick="openModal(this)" /><div class="item-text">	Ламба Мурселаго	</div></div>
+<div class="item"><img src="242.jpg" onclick="openModal(this)" /><div class="item-text">	Бумер М5 КС	</div></div>
+<div class="item"><img src="243.jpg" onclick="openModal(this)" /><div class="item-text">	Панама Турбо С Туризмо	</div></div>
+<div class="item"><img src="244.jpg" onclick="openModal(this)" /><div class="item-text">	Ровер Дефендер 2023	</div></div>
+<div class="item"><img src="245.jpg" onclick="openModal(this)" /><div class="item-text">	Ферра Ф40	</div></div>
+<div class="item"><img src="246.jpg" onclick="openModal(this)" /><div class="item-text">	Хантер 4х4	</div></div>
+</div>
+</div>
+<div class="section" id="section-automobiles">
+      <div class="section-header" onclick="toggleSection('section-automobiles')">
+        Велосипеды / мотоциклы
+         <span class="toggle-icon" id="icon-section-automobiles">&#9650;</span>
+      </div>
+      <div class="items">
+<div class="item"><img src="247.jpg" onclick="openModal(this)" /><div class="item-text">	BMX	</div></div>
+<div class="item"><img src="248.jpg" onclick="openModal(this)" /><div class="item-text">	Tri-Cycles Race Bike	</div></div>
+<div class="item"><img src="249.jpg" onclick="openModal(this)" /><div class="item-text">	Scorcher	</div></div>
+<div class="item"><img src="250.jpg" onclick="openModal(this)" /><div class="item-text">	Whippet Race Bike	</div></div>
+<div class="item"><img src="251.jpg" onclick="openModal(this)" /><div class="item-text">	Endurex Race Bike	</div></div>
+<div class="item"><img src="252.jpg" onclick="openModal(this)" /><div class="item-text">	Юпитер	</div></div>
+<div class="item"><img src="253.jpg" onclick="openModal(this)" /><div class="item-text">	У-6736	</div></div>
+<div class="item"><img src="254.jpg" onclick="openModal(this)" /><div class="item-text">	Bagger	</div></div>
+<div class="item"><img src="255.jpg" onclick="openModal(this)" /><div class="item-text">	Sanchez	</div></div>
+<div class="item"><img src="256.jpg" onclick="openModal(this)" /><div class="item-text">	Daemon	</div></div>
+<div class="item"><img src="257.jpg" onclick="openModal(this)" /><div class="item-text">	Avarus	</div></div>
+<div class="item"><img src="258.jpg" onclick="openModal(this)" /><div class="item-text">	Zombie Chooper	</div></div>
+<div class="item"><img src="259.jpg" onclick="openModal(this)" /><div class="item-text">	Innovation	</div></div>
+<div class="item"><img src="260.jpg" onclick="openModal(this)" /><div class="item-text">	FCR 1000	</div></div>
+<div class="item"><img src="261.jpg" onclick="openModal(this)" /><div class="item-text">	Nightblade	</div></div>
+<div class="item"><img src="262.jpg" onclick="openModal(this)" /><div class="item-text">	Diablous Custom	</div></div>
+<div class="item"><img src="263.jpg" onclick="openModal(this)" /><div class="item-text">	Akuma	</div></div>
+<div class="item"><img src="264.jpg" onclick="openModal(this)" /><div class="item-text">	Gargoyle	</div></div>
+<div class="item"><img src="265.jpg" onclick="openModal(this)" /><div class="item-text">	Bati 801	</div></div>
+<div class="item"><img src="266.jpg" onclick="openModal(this)" /><div class="item-text">	Defiler	</div></div>
+<div class="item"><img src="267.jpg" onclick="openModal(this)" /><div class="item-text">	Hakuchou	</div></div>
+<div class="item"><img src="268.jpg" onclick="openModal(this)" /><div class="item-text">	Double T	</div></div>
+<div class="item"><img src="269.jpg" onclick="openModal(this)" /><div class="item-text">	Vortex	</div></div>
+<div class="item"><img src="270.jpg" onclick="openModal(this)" /><div class="item-text">	Chimera	</div></div>
+<div class="item"><img src="271.jpg" onclick="openModal(this)" /><div class="item-text">	Sanctus	</div></div>
+<div class="item"><img src="272.jpg" onclick="openModal(this)" /><div class="item-text">	Харлей-"Фэтбой"	</div></div>
+<div class="item"><img src="273.jpg" onclick="openModal(this)" /><div class="item-text">	Бумер 1000	</div></div>
+<div class="item"><img src="274.jpg" onclick="openModal(this)" /><div class="item-text">	Ретро-Харлей	</div></div>
+</div>
+</div>
+ <div class="section">
+      <div class="section-header" onclick="toggleSection('section-automobiles')">
+        Служебный транспорт
+        <span class="toggle-icon" id="icon-section-automobiles">&#9650;</span>
+      </div>
+      <div class="items">
+<div class="item"><img src="275.jpg" onclick="openModal(this)" /><div class="item-text">	Веста Репортёрская (Служебный)	</div></div>
+<div class="item"><img src="276.jpg" onclick="openModal(this)" /><div class="item-text">	Пикап Сил.Структур (Служебный)	</div></div>
+<div class="item"><img src="277.jpg" onclick="openModal(this)" /><div class="item-text">	Ваген-Скорая (Служебный)	</div></div>
+<div class="item"><img src="278.jpg" onclick="openModal(this)" /><div class="item-text">	Военный Грузовик (Служебный)	</div></div>
+<div class="item"><img src="279.jpg" onclick="openModal(this)" /><div class="item-text">	Бизнес-Вэн - Служебный	</div></div>
+<div class="item"><img src="280.jpg" onclick="openModal(this)" /><div class="item-text">	Тигр (Служебный)	</div></div>
+<div class="item"><img src="281.jpg" onclick="openModal(this)" /><div class="item-text">	Служебная А4	</div></div>
+<div class="item"><img src="282.jpg" onclick="openModal(this)" /><div class="item-text">	Генезис (Служебный)	</div></div>
+<div class="item"><img src="283.jpg" onclick="openModal(this)" /><div class="item-text">	Тайфун (Служебный)	</div></div>
+<div class="item"><img src="284.jpg" onclick="openModal(this)" /><div class="item-text">	Каратель (Служебный)	</div></div>
+<div class="item"><img src="285.jpg" onclick="openModal(this)" /><div class="item-text">	Кайман 718 ДПС (Служебный)	</div></div>
+<div class="item"><img src="286.jpg" onclick="openModal(this)" /><div class="item-text">	Бумер Мото - Служебный	</div></div>
+<div class="item"><img src="287.jpg" onclick="openModal(this)" /><div class="item-text">	Спринтер ОМС (Служебный). Бюджет: Свободный.	</div></div>
+<div class="item"><img src="288.jpg" onclick="openModal(this)" /><div class="item-text">	Ф7 ДПС (Служебный)	</div></div>
+<div class="item"><img src="289.jpg" onclick="openModal(this)" /><div class="item-text">	ПавАЗ Некст (Служебный)	</div></div>
+<div class="item"><img src="290.jpg" onclick="openModal(this)" /><div class="item-text">	Спец.Танк "Пятисотый" (Служебный)	</div></div>
+<div class="item"><img src="291.jpg" onclick="openModal(this)" /><div class="item-text">	Москвович 3 Служебный	</div></div>
+<div class="item"><img src="292.jpg" onclick="openModal(this)" /><div class="item-text">	Зик 009 Служебный	</div></div>
+<div class="item"><img src="293.jpg" onclick="openModal(this)" /><div class="item-text">	Бумер М5 "Служебный"	</div></div>
+<div class="item"><img src="294.jpg" onclick="openModal(this)" /><div class="item-text">	Буханка Служебная	</div></div>
+<div class="item"><img src="295.jpg" onclick="openModal(this)" /><div class="item-text">	Ларгус 2024 "Служебный"	</div></div>
+<div class="item"><img src="296.jpg" onclick="openModal(this)" /><div class="item-text">	ПавАЗ 3205 (Служебный)	</div></div>
+</div>
+</div>
+<div class="section">
+      <div class="section-header" onclick="toggleSection('section-automobiles')">
+        Вертолеты
+        <span class="toggle-icon" id="icon-section-automobiles">&#9650;</span>
+      </div>
+      <div class="items">
+<div class="item"><img src="297.jpg" onclick="openModal(this)" /><div class="item-text">	145 (Служебный)	</div></div>
+<div class="item"><img src="298.jpg" onclick="openModal(this)" /><div class="item-text">	Мишка (Служебный)	</div></div>
+<div class="item"><img src="299.jpg" onclick="openModal(this)" /><div class="item-text">	Правительственный Свифт (Служебный)	</div></div>
+<div class="item"><img src="300.jpg" onclick="openModal(this)" /><div class="item-text">	Havok	</div></div>
+<div class="item"><img src="301.jpg" onclick="openModal(this)" /><div class="item-text">	Мэверик	</div></div>
+<div class="item"><img src="302.jpg" onclick="openModal(this)" /><div class="item-text">	Frogger	</div></div>
+<div class="item"><img src="303.jpg" onclick="openModal(this)" /><div class="item-text">	Списанный Buzzard	</div></div>
+<div class="item"><img src="304.jpg" onclick="openModal(this)" /><div class="item-text">	Supervolito	</div></div>
+<div class="item"><img src="305.jpg" onclick="openModal(this)" /><div class="item-text">	Свифт Делюкс	</div></div>
+</div>
+</div>
+ <div class="section">
+      <div class="section-header" onclick="toggleSection('section-automobiles')">
+        Лодки
+        <span class="toggle-icon" id="icon-section-automobiles">&#9650;</span>
+      </div>
+      <div class="items">
+<div class="item"><img src="306.jpg" onclick="openModal(this)" /><div class="item-text">	Suntrap	</div></div>
+<div class="item"><img src="307.jpg" onclick="openModal(this)" /><div class="item-text">	Seashark	</div></div>
+<div class="item"><img src="308.jpg" onclick="openModal(this)" /><div class="item-text">	Dinghy	</div></div>
+<div class="item"><img src="309.jpg" onclick="openModal(this)" /><div class="item-text">	Tropic	</div></div>
+<div class="item"><img src="310.jpg" onclick="openModal(this)" /><div class="item-text">	Squalo	</div></div>
+<div class="item"><img src="311.jpg" onclick="openModal(this)" /><div class="item-text">	Jetmax	</div></div>
+<div class="item"><img src="312.jpg" onclick="openModal(this)" /><div class="item-text">	Speeder	</div></div>
+<div class="item"><img src="313.jpg" onclick="openModal(this)" /><div class="item-text">	Longfin	</div></div>
+<div class="item"><img src="314.jpg" onclick="openModal(this)" /><div class="item-text">	Гидра	</div></div>
+<div class="item"><img src="315.jpg" onclick="openModal(this)" /><div class="item-text">	Спортфиш	</div></div>
+</div>
+</div>
+ <div class="section">
+      <div class="section-header" onclick="toggleSection('section-automobiles')">
+        Сумки / одежда
+        <span class="toggle-icon" id="icon-section-automobiles">&#9650;</span>
+      </div>
+      <div class="items">
+<div class="item"><img src="316.jpg" onclick="openModal(this)" /><div class="item-text">	барсетка "L.STRAUSS"	</div></div>
+<div class="item"><img src="317.jpg" onclick="openModal(this)" /><div class="item-text">	барсетка "G"	</div></div>
+<div class="item"><img src="318.jpg" onclick="openModal(this)" /><div class="item-text">	барсетка "ЭЙНДЖЕЛЗ"	</div></div>
+<div class="item"><img src="319.jpg" onclick="openModal(this)" /><div class="item-text">	барсетка "Чаечка"	</div></div>
+<div class="item"><img src="320.jpg" onclick="openModal(this)" /><div class="item-text">	барсетка "ЭЙП"	</div></div>
+<div class="item"><img src="321.jpg" onclick="openModal(this)" /><div class="item-text">	рюкзак "Три Полоски"	</div></div>
+<div class="item"><img src="322.jpg" onclick="openModal(this)" /><div class="item-text">	рюкзак "Чаечка"	</div></div>
+<div class="item"><img src="323.jpg" onclick="openModal(this)" /><div class="item-text">	рюкзак "G"	</div></div>
+<div class="item"><img src="324.jpg" onclick="openModal(this)" /><div class="item-text">	рюкзак "ЭЙП"	</div></div>
+<div class="item"><img src="325.jpg" onclick="openModal(this)" /><div class="item-text">	сумка "Томик"	</div></div>
+<div class="item"><img src="326.jpg" onclick="openModal(this)" /><div class="item-text">	сумка "УАЙТЫ"	</div></div>
+<div class="item"><img src="327.jpg" onclick="openModal(this)" /><div class="item-text">	сумка "G"	</div></div>
+<div class="item"><img src="328.jpg" onclick="openModal(this)" /><div class="item-text">	сумка "ЛУИК"	</div></div>
+<div class="item"><img src="329.jpg" onclick="openModal(this)" /><div class="item-text">	большая сумка "MEDUSA"	</div></div>
+<div class="item"><img src="330.jpg" onclick="openModal(this)" /><div class="item-text">	рюкзак "SUP"	</div></div>
+<div class="item"><img src="331.jpg" onclick="openModal(this)" /><div class="item-text">	рюкзак "MEDUSA"	</div></div>
+<div class="item"><img src="332.jpg" onclick="openModal(this)" /><div class="item-text">	рюкзак "ЛУИК"	</div></div>
+<div class="item"><img src="333.jpg" onclick="openModal(this)" /><div class="item-text">	Шапка-Ушанка "ЛВ"	</div></div>
+</div>
+</div>
+
+<!-- Модальное окно -->
+<div class="modal" id="modal" onclick="closeModal(event)">
+  <span class="modal-close" onclick="closeModal(event)">&times;</span>
+  <img id="modal-img" src="" alt="Увеличенное изображение" />
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const headers = document.querySelectorAll('.section-header');
+
+    headers.forEach(header => {
+      header.addEventListener('click', () => {
+        const section = header.parentElement; // родитель .section
+        const items = section.querySelector('.items');
+        const icon = header.querySelector('.toggle-icon');
+
+        if (items.style.display === 'none' || items.classList.contains('collapsed')) {
+          // Показать содержимое
+          items.style.display = 'grid';
+          items.classList.remove('collapsed');
+          if(icon) icon.classList.remove('collapsed');
+        } else {
+          // Скрыть содержимое
+          items.style.display = 'none';
+          items.classList.add('collapsed');
+          if(icon) icon.classList.add('collapsed');
+        }
+      });
+    });
+  });
+
+  // Функция открытия модального окна с увеличенной картинкой
+  function openModal(imgElem) {
+    const modal = document.getElementById('modal');
+    const modalImg = document.getElementById('modal-img');
+    modalImg.src = imgElem.src;
+    modalImg.alt = imgElem.alt;
+    modal.classList.add('open');
+  }
+
+  // Функция закрытия модального окна
+  function closeModal(event) {
+    if (event.target.id === 'modal-img') return;
+    const modal = document.getElementById('modal');
+    modal.classList.remove('open');
+  }
+</script>
+<script>
+document.querySelectorAll('.item').forEach(item => {
+  item.addEventListener('click', () => {
+    const textElem = item.querySelector('.item-text');
+    if (!textElem) return;
+
+    const text = textElem.innerText || textElem.textContent;
+    
+    // Копируем текст в буфер обмена
+    navigator.clipboard.writeText(text).then(() => {
+      // Добавляем подсветку
+      item.classList.add('highlight');
+      // Убираем подсветку через 1.5 секунды
+      setTimeout(() => {
+        item.classList.remove('highlight');
+      }, 1500);
+    }).catch(err => {
+      console.error('Не удалось скопировать текст: ', err);
+    });
+  });
+});
+</script>
+</body>
+</html>
