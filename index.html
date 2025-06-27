@@ -873,5 +873,17 @@ document.querySelectorAll('.item').forEach(item => {
   });
 });
 </script>
+
+    <script>
+          // Скрипт обновления сайта при загрузке браузера
+    document.addEventListener("DOMContentLoaded", function() {
+      if (localStorage.getItem('reloaded') == null) {
+        localStorage.setItem('reloaded', 'yes');
+        location.reload();
+      } else {
+        localStorage.removeItem('reloaded');
+      }
+    });
+    </script>
 </body>
 </html>
